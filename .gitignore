@@ -1,0 +1,11 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.Rproj
+*/*_cache/*
+*tsv*
+*csv*
+*xlsx*
+*zip
+.DS_Store
