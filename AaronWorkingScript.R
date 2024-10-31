@@ -40,3 +40,9 @@ countries <- economy |>
 #U.R. of Tanzania: Mainland = United Republic of Tanzania 1980
 #Venezuela (Bolivarian Republic of) = Venezuela
 #Viet Nam = Vietnam
+ranking <- merged |> 
+  group_by(year) |> 
+  mutate(gdp_rank = rank(-gross_domestic_product_gdp),
+         medal_rank = rank(-total))
+merged |> 
+  arrange(desc(total))
