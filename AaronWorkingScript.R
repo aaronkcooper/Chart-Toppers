@@ -46,3 +46,39 @@ ranking <- merged |>
          medal_rank = rank(-total))
 merged |> 
   arrange(desc(total))
+ranking |> 
+  ggplot(aes(gdp_rank, medal_rank)) +
+  geom_point() +
+  theme_minimal()
+m <- lm(medal_rank ~ gdp_rank, ranking)
+ranking |> 
+  ggplot(aes(gdp_rank, medal_rank)) +
+  geom_point() +
+  stat_smooth(method = "lm") + 
+  theme_minimal()
+pop_ranking <- merged |> 
+  group_by(year) |> 
+  mutate(pop_rank = rank(-population),
+         medal_rank = rank(-total))
+pop_ranking |> 
+  ggplot(aes(pop_rank, medal_rank)) +
+  geom_point() +
+  stat_smooth(method = "lm") + 
+  theme_minimal()
+percap_ranking <- merged |> 
+  group_by(year) |> 
+  mutate(percap_rank = rank(-per_capita_gdp),
+         medal_rank = rank(-total))
+percap_ranking |> 
+  ggplot(aes(percap_rank, medal_rank)) +
+  geom_point() +
+  stat_smooth(method = "lm") + 
+  theme_minimal()
+economy |> 
+  mutate(country = ifelse(country == "Czechoslovakia (Former)", "Czechoslovakia",
+                   ifelse(country == "D.P.R. of Korea", "Democratic People's Republic of Korea",
+                   ifelse(country == "Ethiopia (Former)", "Ethiopia",
+                   ifelse(country == "China, Hong Kong SAR", "Hong Kong, China", country)        
+                          )        
+                          )
+                          ))
